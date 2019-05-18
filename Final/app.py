@@ -53,7 +53,7 @@ def main(year):
             "District": result.District,
             "Year": year,
             "Results": result[year]},
-        #result.GeoData
+        "Geometry": result.GeoData
         }
         geojson.append(geojsonFeature)
 
