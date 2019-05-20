@@ -1,63 +1,30 @@
-import numpy as np
-
-import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func
-
 from flask import Flask, jsonify
-
+import pymongo
+from mongo_to_geojson import mongo_to_geojson 
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///elections.db")
 
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(engine, reflect=True)
 
-# Save reference to the table
-District = Base.classes.data
+# app = Flask(__name__)
 
-# Create our session (link) from Python to the DB
-session = Session(engine)
+mongo_uri = 'mongodb://localhost/27017'
+client = pymongo.MongoClient(mongo_uri)
+db = client.election 
+collection = 'test2'
+output_geojson =  'test2.json'
+# query = {"POP": {"$gte": 100000}}
+
+# @app.route("/2016")
+# def election2016():
+try:  
+    mongo_to_geojson(mongo_uri,collection,output_geojson)  
+except:  
+    print('mongo_to_geojson no worky')
 
 #################################################
-# Flask Setup
-#################################################
-app = Flask(__name__)
-
-
-#################################################
-# Flask Routes
+# GEOJSON
 #################################################
 
-@app.route("/")
-def welcome():
-    return (
-        f"District_Data:<br/>"
-    )
-
-
-@app.route("/api/<year>")
-def main(year):
-
-    results = session.query(District.District, District[year], District.GeoData).all()
-
-    geojson = []
-    for result in results:
-        geojsonFeature = {
-        "type": "Feature",
-        "properties": {
-            "District": result.District,
-            "Year": year,
-            "Results": result[year]},
-        "Geometry": result.GeoData
-        }
-        geojson.append(geojsonFeature)
-
-    return geojson
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
