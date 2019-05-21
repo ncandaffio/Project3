@@ -86,8 +86,9 @@ function Color(Result) {
 
 
 var elections = new L.LayerGroup();
+test = 'http://localhost:5000/2016'
 
-L.geoJSON(states, {
+L.geoJSON(test, {
   style: function (feature) {
     return {
         fillColor: Color(feature.properties.Result),
