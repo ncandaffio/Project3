@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import pymongo
 import json
 from bson import ObjectId
+from flask_cors import CORS, cross_origin
 
 #################################################
 # Database Setup
@@ -12,8 +13,7 @@ app = Flask(__name__)
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
-db = client.electionDB 
-# collection = db['2008']
+db = client.electioncongress 
 
 #################################################
 # Flask Routes
@@ -23,11 +23,15 @@ db = client.electionDB
 # API ROUTES
 #################################################
 
+CORS(app, support_credentials=True)
+
 @app.route("/")
 def Home():
     """List all available api routes."""
     return (
-        f"API for project"
+        f"API for project<br/><br/>"
+        "Available Years<br/><br/>"
+        "2008 / 2012 / 2016"
         
     )
 #################################################
@@ -47,7 +51,7 @@ def data(year):
         }
         
         a.append(aa)
-    return jsonify(a)
+    return jsonify({"Feature":a})
 
 
 if __name__ == '__main__':
