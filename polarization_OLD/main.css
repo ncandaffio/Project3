@@ -1,0 +1,13 @@
+body {
+  font-size: 14px;
+}
+
+svg .axis line,
+svg .axis path {
+  stroke: #999;
+}
+
+svg .circle,
+svg .bar {
+  opacity: 0.7;
+}
