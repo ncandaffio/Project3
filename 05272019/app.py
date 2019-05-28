@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
-db = client.electioncongressdata
+db = client.electioncongress
 
 #################################################
 # Flask Routes
