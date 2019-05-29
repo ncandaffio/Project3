@@ -24,9 +24,9 @@ d3.json(queryUrl2008, function (err,data) {
 
         onEachFeature: function (feature, layer) {
             layer.bindPopup(
-                "<h3>" + feature.properties.District +
-                "</h3> <hr> <h4>" + feature.properties.Result + 
-                "</h4>");
+                "<h4>" + feature.properties.District +
+                "</h4> <hr> <h5>" + feature.properties.Result + 
+                "</h5>");
         }
     }).addTo(districts2008);
     createMap(districts2008);
@@ -51,9 +51,9 @@ d3.json(queryUrl2012, function (err,data) {
 
         onEachFeature: function (feature, layer) {
             layer.bindPopup(
-                "<h3>" + feature.properties.District +
-                "</h3> <hr> <h4>" + feature.properties.Result + 
-                "</h4>");
+                "<h4>" + feature.properties.District +
+                "</h4> <hr> <h5>" + feature.properties.Result + 
+                "</h5>");
         }
     }).addTo(districts2012);
 });
@@ -77,9 +77,9 @@ d3.json(queryUrl2016, function (err,data) {
 
         onEachFeature: function (feature, layer) {
             layer.bindPopup(
-                "<h3>" + feature.properties.District +
-                "</h3> <hr> <h4>" + feature.properties.Result + 
-                "</h4>");
+                "<h4>" + feature.properties.District +
+                "</h4> <hr> <h5>" + feature.properties.Result + 
+                "</h5>");
         }
     }).addTo(districts2016);  
 });    
@@ -122,18 +122,6 @@ function createMap() {
     accessToken: API_KEY
   });
 
-//   var darkmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-//     attribution: "Map data &copy; <a href=\"https://www.openlightmap.org/\">Openlightmap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-//     maxZoom: 18,
-//     id: "mapbox.dark",
-//     accessToken: API_KEY
-//   });
-
-  // Define a baseMaps object to hold our base layers
-//   var baseMaps = {
-//     "Light Map": lightmap,
-//     "Dark Map": darkmap
-//   };
 
 
   // Create our map, giving it the lightmap and districts layers to display on load

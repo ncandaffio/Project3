@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
-db = client.electioncongress
+db = client.electiondata
 
 #################################################
 # Flask Routes
@@ -41,7 +41,7 @@ def Home():
 @app.route("/<year>")
 def data(year):
     """Display all data from the collection.""" 
-    # session_ls = list(db[year].find({'_id':False}))
+
     a = []
     for result in db[year].find(): 
         aa = {
